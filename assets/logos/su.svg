@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs>
+<radialGradient id="suBg" cx="50%" cy="58%" r="70%"><stop offset="0" stop-color="#3148D6"></stop><stop offset=".55" stop-color="#18237A"></stop><stop offset="1" stop-color="#0B1045"></stop></radialGradient>
+<linearGradient id="suShade" x1="0" x2="1"><stop offset="0" stop-color="#000000" stop-opacity=".18"></stop><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".35"></stop><stop offset=".45" stop-color="#FFFFFF" stop-opacity="0"></stop><stop offset=".8" stop-color="#000000" stop-opacity=".08"></stop><stop offset="1" stop-color="#000000" stop-opacity=".28"></stop></linearGradient>
+<clipPath id="suInL"><path d="M5 0H55V110A25 25 0 0 1 5 110Z"></path></clipPath>
+<clipPath id="suInR"><path d="M5 0H51V104A23 23 0 0 1 5 104Z"></path></clipPath>
+<clipPath id="suInM"><path d="M90 64H166V200A38 38 0 0 1 90 200Z"></path></clipPath>
+</defs>
+<rect width="256" height="256" fill="url(#suBg)"></rect>
+<g transform="translate(54 226) rotate(-9) translate(-30 -140)">
+<g clip-path="url(#suInL)">
+<rect x="0" y="24" width="60" height="44" fill="#1E8CF0"></rect>
+<rect x="0" y="68" width="60" height="38" fill="#2DB84A"></rect>
+<rect x="0" y="106" width="60" height="40" fill="#F7862A"></rect>
+<ellipse cx="30" cy="24" rx="25" ry="6" fill="#6FB9FF"></ellipse>
+<rect x="0" y="0" width="60" height="146" fill="url(#suShade)"></rect>
+</g>
+<path d="M0 0V110A30 30 0 0 0 60 110V0" fill="rgba(255,255,255,.08)" stroke="rgba(225,238,255,.85)" stroke-width="3"></path>
+<ellipse cx="30" cy="0" rx="30" ry="7" fill="rgba(255,255,255,.12)" stroke="rgba(225,238,255,.9)" stroke-width="3"></ellipse>
+<path d="M10 12V116" stroke="rgba(255,255,255,.55)" stroke-width="4" stroke-linecap="round"></path>
+</g>
+<g transform="translate(197 222) rotate(9) translate(-28 -132)">
+<g clip-path="url(#suInR)">
+<rect x="0" y="28" width="56" height="38" fill="#FFC81F"></rect>
+<rect x="0" y="66" width="56" height="34" fill="#E8332F"></rect>
+<rect x="0" y="100" width="56" height="36" fill="#2DB84A"></rect>
+<ellipse cx="28" cy="28" rx="23" ry="6" fill="#FFE47A"></ellipse>
+<rect x="0" y="0" width="56" height="136" fill="url(#suShade)"></rect>
+</g>
+<path d="M0 0V104A28 28 0 0 0 56 104V0" fill="rgba(255,255,255,.08)" stroke="rgba(225,238,255,.85)" stroke-width="3"></path>
+<ellipse cx="28" cy="0" rx="28" ry="7" fill="rgba(255,255,255,.12)" stroke="rgba(225,238,255,.9)" stroke-width="3"></ellipse>
+<path d="M10 12V110" stroke="rgba(255,255,255,.55)" stroke-width="4" stroke-linecap="round"></path>
+</g>
+<ellipse cx="128" cy="150" rx="62" ry="100" fill="#4B6BFF" opacity=".22"></ellipse>
+<g clip-path="url(#suInM)">
+<rect x="84" y="178" width="88" height="70" fill="#1E8CF0"></rect>
+<rect x="84" y="140" width="88" height="38" fill="#FFC81F"></rect>
+<rect x="84" y="102" width="88" height="38" fill="#E8332F"></rect>
+<rect x="84" y="95" width="88" height="7" fill="#9B3FE8"></rect>
+<ellipse cx="128" cy="178" rx="38" ry="7" fill="#6FB9FF"></ellipse>
+<ellipse cx="128" cy="140" rx="38" ry="7" fill="#FFE47A"></ellipse>
+<ellipse cx="128" cy="102" rx="38" ry="7" fill="#FF6E62"></ellipse>
+<ellipse cx="128" cy="95" rx="38" ry="7" fill="#C27BFF"></ellipse>
+<rect x="84" y="60" width="88" height="190" fill="url(#suShade)"></rect>
+</g>
+<path d="M84 64V200A44 44 0 0 0 172 200V64" fill="rgba(255,255,255,.08)" stroke="rgba(225,238,255,.9)" stroke-width="3.5"></path>
+<ellipse cx="128" cy="64" rx="44" ry="10" fill="rgba(255,255,255,.12)" stroke="rgba(235,244,255,.95)" stroke-width="3.5"></ellipse>
+<path d="M97 78V206" stroke="rgba(255,255,255,.6)" stroke-width="5" stroke-linecap="round"></path>
+<path d="M160 34C146 38 128 46 128 70V98" fill="none" stroke="#8A2FE0" stroke-width="13" stroke-linecap="round"></path>
+<path d="M160 34C146 38 128 46 128 70V98" fill="none" stroke="#B36BFF" stroke-width="5" stroke-linecap="round" transform="translate(-3 0)"></path>
+<g transform="translate(160 26) rotate(24)">
+<path d="M4 -4H120V22H4Z" fill="#9B3FE8"></path>
+<path d="M0 -20H130V22H0Z" fill="rgba(255,255,255,.12)" stroke="rgba(225,238,255,.9)" stroke-width="3" stroke-linejoin="round"></path>
+<ellipse cx="0" cy="1" rx="8" ry="21" fill="rgba(255,255,255,.15)" stroke="rgba(235,244,255,.95)" stroke-width="3"></ellipse>
+<path d="M14 -12H120" stroke="rgba(255,255,255,.55)" stroke-width="4" stroke-linecap="round"></path>
+</g>
+<g fill="rgba(255,255,255,.12)" stroke="rgba(220,235,255,.75)" stroke-width="1.5">
+<circle cx="54" cy="46" r="10"></circle><circle cx="36" cy="72" r="4"></circle><circle cx="236" cy="176" r="7"></circle><circle cx="22" cy="206" r="8"></circle><circle cx="38" cy="236" r="5"></circle><circle cx="228" cy="238" r="4"></circle>
+</g>
+<g fill="#FFFFFF"><circle cx="50" cy="42" r="2.6"></circle><circle cx="19" cy="203" r="2"></circle><circle cx="233" cy="173" r="1.8"></circle></g>
+</svg>

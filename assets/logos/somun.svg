@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs>
+<radialGradient id="ssBg" cx="40%" cy="35%" r="80%"><stop offset="0" stop-color="#EAF2FF"></stop><stop offset=".55" stop-color="#9DBDF6"></stop><stop offset="1" stop-color="#4E7FE0"></stop></radialGradient>
+<linearGradient id="ssSilver" x1="0" x2="1"><stop offset="0" stop-color="#8E97A8"></stop><stop offset=".35" stop-color="#F1F4F8"></stop><stop offset=".6" stop-color="#B7BFCC"></stop><stop offset="1" stop-color="#6E7788"></stop></linearGradient>
+<linearGradient id="ssBolt" x1="0" x2="1"><stop offset="0" stop-color="#6E7788"></stop><stop offset=".4" stop-color="#EEF1F5"></stop><stop offset="1" stop-color="#7D8696"></stop></linearGradient>
+<pattern id="ssThread" width="24" height="7" patternUnits="userSpaceOnUse"><rect width="24" height="7" fill="url(#ssBolt)"></rect><path d="M0 6L24 1" stroke="#5B6474" stroke-width="2"></path></pattern>
+<linearGradient id="gY" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE061"></stop><stop offset=".5" stop-color="#FFC21A"></stop><stop offset="1" stop-color="#E9A000"></stop></linearGradient>
+<linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6FA8FF"></stop><stop offset=".5" stop-color="#2F7BF0"></stop><stop offset="1" stop-color="#1D5BCB"></stop></linearGradient>
+<linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B5E"></stop><stop offset=".5" stop-color="#EE3430"></stop><stop offset="1" stop-color="#C41F1F"></stop></linearGradient>
+<linearGradient id="gG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6FE08A"></stop><stop offset=".5" stop-color="#2FBC4E"></stop><stop offset="1" stop-color="#1C9238"></stop></linearGradient>
+</defs>
+<rect width="256" height="256" fill="url(#ssBg)"></rect>
+<g fill="none" stroke="#FFFFFF" stroke-linecap="round">
+<path d="M186 60C226 70 226 96 196 106" stroke-width="9" opacity=".25"></path>
+<path d="M186 60C226 70 226 96 196 106" stroke-width="3.5" opacity=".9"></path>
+<path d="M50 112C22 124 30 146 60 152" stroke-width="9" opacity=".25"></path>
+<path d="M50 112C22 124 30 146 60 152" stroke-width="3.5" opacity=".9"></path>
+</g>
+<ellipse cx="117" cy="222" rx="84" ry="18" fill="#6E7788"></ellipse>
+<path d="M33 210V222A84 18 0 0 0 201 222V210Z" fill="url(#ssSilver)"></path>
+<ellipse cx="117" cy="210" rx="84" ry="18" fill="#E6EAF0" stroke="#A9B1BF" stroke-width="2"></ellipse>
+<ellipse cx="117" cy="210" rx="60" ry="11" fill="#D2D8E1"></ellipse>
+<g stroke-linejoin="round" stroke-width="2"><polygon points="59,164 85,152 149,152 175,164 149,176 85,176" fill="#7FE39A" stroke="#0B4A1C"></polygon><ellipse cx="117" cy="164" rx="19" ry="7" fill="#0C5A22"></ellipse></g><rect x="105" y="124" width="24" height="41" fill="url(#ssThread)"></rect><g stroke-linejoin="round" stroke-width="2"><polygon points="59,164 85,176 85,206 59,194" fill="#25A443" stroke="#0B4A1C"></polygon><rect x="85" y="176" width="64" height="30" fill="url(#gG)" stroke="#0B4A1C"></rect><polygon points="175,164 149,176 149,206 175,194" fill="#1A8034" stroke="#0B4A1C"></polygon><path d="M61 165L85 177H149L173 165" fill="none" stroke="#A6F2B8" stroke-width="2.5" opacity=".85"></path></g>
+<g stroke-linejoin="round" stroke-width="2"><polygon points="59,124 85,112 149,112 175,124 149,136 85,136" fill="#FF8A7E" stroke="#5E0C0C"></polygon><ellipse cx="117" cy="124" rx="19" ry="7" fill="#7A1010"></ellipse></g><rect x="105" y="84" width="24" height="41" fill="url(#ssThread)"></rect><g stroke-linejoin="round" stroke-width="2"><polygon points="59,124 85,136 85,166 59,154" fill="#D8262A" stroke="#5E0C0C"></polygon><rect x="85" y="136" width="64" height="30" fill="url(#gR)" stroke="#5E0C0C"></rect><polygon points="175,124 149,136 149,166 175,154" fill="#A81C1C" stroke="#5E0C0C"></polygon><path d="M61 125L85 137H149L173 125" fill="none" stroke="#FFB2A8" stroke-width="2.5" opacity=".85"></path></g>
+<g stroke-linejoin="round" stroke-width="2"><polygon points="59,84 85,72 149,72 175,84 149,96 85,96" fill="#8CB8FF" stroke="#0E2F6E"></polygon><ellipse cx="117" cy="84" rx="19" ry="7" fill="#0F3A8A"></ellipse></g><rect x="105" y="44" width="24" height="41" fill="url(#ssThread)"></rect><g stroke-linejoin="round" stroke-width="2"><polygon points="59,84 85,96 85,126 59,114" fill="#2B6FE0" stroke="#0E2F6E"></polygon><rect x="85" y="96" width="64" height="30" fill="url(#gB)" stroke="#0E2F6E"></rect><polygon points="175,84 149,96 149,126 175,114" fill="#1D52B8" stroke="#0E2F6E"></polygon><path d="M61 85L85 97H149L173 85" fill="none" stroke="#B8D4FF" stroke-width="2.5" opacity=".85"></path></g>
+<g stroke-linejoin="round" stroke-width="2"><polygon points="59,44 85,32 149,32 175,44 149,56 85,56" fill="#FFE36A" stroke="#8A5A00"></polygon><ellipse cx="117" cy="44" rx="19" ry="7" fill="#8A5A00"></ellipse></g><rect x="105" y="4" width="24" height="41" fill="url(#ssThread)"></rect><g stroke-linejoin="round" stroke-width="2"><polygon points="59,44 85,56 85,86 59,74" fill="#F2B400" stroke="#8A5A00"></polygon><rect x="85" y="56" width="64" height="30" fill="url(#gY)" stroke="#8A5A00"></rect><polygon points="175,44 149,56 149,86 175,74" fill="#D99A00" stroke="#8A5A00"></polygon><path d="M61 45L85 57H149L173 45" fill="none" stroke="#FFF3B0" stroke-width="2.5" opacity=".85"></path></g>
+<ellipse cx="117" cy="6" rx="12" ry="5" fill="#E9EDF2" stroke="#7D8696" stroke-width="1.5"></ellipse>
+<g transform="translate(206 112) rotate(-22)">
+<polygon points="-26,-45 26,-45 52,0 26,45 -26,45 -52,0" transform="translate(9 8) scale(.66)" fill="#8E1616" stroke="#5E0C0C" stroke-width="3" stroke-linejoin="round"></polygon>
+<polygon points="-26,-45 26,-45 52,0 26,45 -26,45 -52,0" transform="scale(.66)" fill="url(#gR)" stroke="#5E0C0C" stroke-width="3" stroke-linejoin="round"></polygon>
+<path d="M-15 -26H15L30 0" transform="scale(1)" fill="none" stroke="#FFB2A8" stroke-width="2.5" opacity=".8"></path>
+<circle r="13" fill="#6E0E0E"></circle>
+<path d="M-9 -9A13 13 0 0 1 12 -4" fill="none" stroke="#C83030" stroke-width="3"></path>
+</g>
+<g fill="none" stroke="#FFFFFF" stroke-linecap="round">
+<path d="M40 176C18 192 44 212 96 210" stroke-width="10" opacity=".25"></path>
+<path d="M40 176C18 192 44 212 96 210" stroke-width="3.5" opacity=".95"></path>
+<path d="M166 196C196 188 202 172 184 162" stroke-width="3.5" opacity=".8"></path>
+</g>
+</svg>
