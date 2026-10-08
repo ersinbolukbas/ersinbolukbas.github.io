@@ -1,8 +1,9 @@
-// Generates the static site (home page, one page and one privacy policy per game).
+// Generates the static site: the home page, plus one page and one privacy policy per app and per game.
 // Usage: node build.mjs
+// The TankCompass privacy text lives in content/tankcompass-privacy.html (see sync-tankcompass-privacy.mjs).
 // After a game is published on Google Play, set its `live` to true and run this again:
 // the "Coming soon" badge becomes a "Get it on Google Play" link.
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,6 +13,48 @@ const OWNER = "Ersin Bölükbaş";
 const EMAIL = "ersin.bolukbas@hotmail.com";
 const SITE = "https://ersinbolukbas.github.io";
 const EFFECTIVE = "October 3, 2026";
+
+const APPS = [
+  {
+    slug: "tankcompass",
+    name: "TankCompass",
+    title: "TankCompass",
+    appId: "com.tankcompass.app",
+    color: "#1B4A73",
+    tagline: "The cheapest fuel near you.",
+    about: [
+      "TankCompass lists the fuel stations around you, sorted by distance or by price, so you can see at a glance where to fill up for less. Petrol, diesel, LPG and every other fuel a station actually sells.",
+      "Prices come straight from official open data, refreshed through the day. Pick a station and your favorite navigation app takes you there.",
+    ],
+    countries: ["Spain", "Italy", "United Kingdom", "Denmark", "France"],
+    features: [
+      "Nearby stations sorted by distance or by price, with the cheapest one highlighted",
+      "A map with a price tag on every station",
+      "Station details: address, opening hours and the price of every fuel sold there",
+      "Directions in Google Maps, Apple Maps, Waze or TomTom",
+      "Favorites, and optional alerts when a favorite station lowers its price",
+      "Search by brand or address",
+      "Six languages: English, Turkish, Spanish, Italian, Danish and French",
+      "No account and no sign-up. Free, supported by ads",
+    ],
+    shots: [
+      ["list", "Station list sorted by price"],
+      ["map", "Map with a price tag on every station"],
+      ["station", "Station details with every fuel price"],
+      ["alerts", "Price alerts for favorite stations"],
+      ["search", "Searching stations by brand"],
+      ["directions", "Choosing a navigation app"],
+    ],
+    sources: [
+      ["Spain", "Geoportal Gasolineras, Ministry for the Ecological Transition (MITECO)", "https://geoportalgasolineras.es/geoportal-instalaciones/Inicio"],
+      ["Spain", "MITECO fuel-price web service", "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/help"],
+      ["Italy", "Osservaprezzi Carburanti, Ministry of Enterprises and Made in Italy (MIMIT)", "https://www.mimit.gov.it/it/open-data/elenco-dataset/carburanti-prezzi-praticati-e-anagrafica-degli-impianti"],
+      ["United Kingdom", "Fuel Finder, Department for Energy Security and Net Zero (DESNZ)", "https://www.gov.uk/government/collections/fuel-finder"],
+      ["Denmark", "Fuel retailers' public price APIs, required by the Konkurrence- og Forbrugerstyrelsen (KFST)", "https://kfst.dk/vejledninger/kfst/dansk/2025/20251216-vejledning-om-api-til-offentliggoerelse-af-prisoplysninger-for-motorbraendstof"],
+      ["France", "prix-carburants, French government open data", "https://data.economie.gouv.fr/explore/dataset/prix-des-carburants-en-france-flux-instantane-v2/"],
+    ],
+  },
+];
 
 const GAMES = [
   {
@@ -95,11 +138,11 @@ function page({ path, title, description, accent = "#2B2A33", body }) {
 <body style="--accent: ${accent}">
   <header class="site-header">
     <a class="brand" href="${up || "./"}"><span class="brand-mark">E&amp;B</span><span>${esc(DEVELOPER)}</span></a>
-    <nav><a href="${up || "./"}#games">Games</a><a href="${up || "./"}#contact">Contact</a></nav>
+    <nav><a href="${up || "./"}#apps">Apps</a><a href="${up || "./"}#games">Games</a><a href="${up || "./"}#contact">Contact</a></nav>
   </header>
 ${body(up)}
   <footer class="site-footer" id="contact">
-    <p><strong>${esc(DEVELOPER)}</strong> is the game studio of ${esc(OWNER)}.</p>
+    <p><strong>${esc(DEVELOPER)}</strong> is the app and game studio of ${esc(OWNER)}.</p>
     <p>Questions or feedback? <a href="mailto:${EMAIL}">${EMAIL}</a></p>
     <p class="muted">© 2026 ${esc(DEVELOPER)} · ${esc(OWNER)}</p>
   </footer>
@@ -121,17 +164,53 @@ const shots = (g, up) =>
     .map((s) => `<img class="shot" src="${up}assets/screenshots/${g.art}-${s}.png" width="1080" height="1920" loading="lazy" alt="${esc(g.name)} screenshot">`)
     .join("")}</div>`;
 
+const appStoreButtons = (a) =>
+  `<a class="store-btn" href="https://play.google.com/store/apps/details?id=${a.appId}">Get it on Google Play</a><span class="store-btn soon">Coming soon to the App Store</span>`;
+
+const countryChips = (a) => `<ul class="chips" aria-label="Countries covered">${a.countries.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>`;
+
+const appShots = (a, up, count = a.shots.length) =>
+  `<div class="shots app-shots">${a.shots
+    .slice(0, count)
+    .map(([file, alt]) => `<img class="shot" src="${up}assets/screenshots/${a.slug}-${file}.jpg" width="736" height="1600" loading="lazy" alt="${esc(a.name)}: ${esc(alt)}">`)
+    .join("")}</div>`;
+
 // ---------- Home ----------
 page({
   path: "",
-  title: `${DEVELOPER} · Relaxing puzzle games by ${OWNER}`,
-  description: `${DEVELOPER} makes relaxing mobile puzzle games: ${GAMES.map((g) => g.name).join(", ")}.`,
+  title: `${DEVELOPER} · Apps and relaxing games by ${OWNER}`,
+  description: `${DEVELOPER} makes ${APPS.map((a) => a.name).join(", ")}, the app that finds the cheapest fuel near you, and relaxing mobile puzzle games: ${GAMES.map((g) => g.name).join(", ")}.`,
   body: (up) => `  <main>
     <section class="hero">
-      <h1>Relaxing games, <span>made with care.</span></h1>
-      <p>${esc(DEVELOPER)} is the small game studio of ${esc(OWNER)}. We make calm, colorful puzzle games you can play anywhere, even offline.</p>
+      <h1>Apps and games, <span>made with care.</span></h1>
+      <p>${esc(DEVELOPER)} is the small studio of ${esc(OWNER)}. We make an app that finds the cheapest fuel near you, and calm, colorful puzzle games you can play anywhere.</p>
     </section>
-    <section class="games" id="games">
+    <div class="section-head" id="apps">
+      <h2>Apps</h2>
+      <p>Useful on the road.</p>
+    </div>
+    <section class="apps">
+${APPS.map(
+  (a) => `      <article class="app-card" style="--accent: ${a.color}">
+        <div class="app-info">
+          <a class="game-head" href="${a.slug}/">
+            <img class="logo" src="assets/logos/${a.slug}.png" width="96" height="96" alt="${esc(a.name)} logo">
+            <div><h2>${esc(a.title)}</h2><p>${esc(a.tagline)}</p></div>
+          </a>
+          <p>${esc(a.about[0])}</p>
+          ${countryChips(a)}
+          <div class="card-actions">${appStoreButtons(a)}</div>
+          <div class="card-actions"><a class="text-link" href="${a.slug}/">More about the app</a><a class="text-link" href="${a.slug}/privacy/">Privacy policy</a></div>
+        </div>
+        ${appShots(a, up, 3)}
+      </article>`,
+).join("\n")}
+    </section>
+    <div class="section-head" id="games">
+      <h2>Relaxing games</h2>
+      <p>Calm, colorful puzzles that also work offline.</p>
+    </div>
+    <section class="games">
 ${GAMES.map(
   (g) => `      <article class="game-card" style="--accent: ${g.color}">
         <a class="game-head" href="${g.slug}/">
@@ -240,4 +319,91 @@ ${[...g.features, "Calm background music, with separate switches for sound, musi
   });
 }
 
-console.log(`Built: home, ${GAMES.length} game pages, ${GAMES.length} privacy policies.`);
+// ---------- App pages ----------
+for (const a of APPS) {
+  page({
+    path: a.slug,
+    title: `${a.title} · ${a.tagline} · ${DEVELOPER}`,
+    description: `${a.title}: ${a.tagline} Compare fuel prices at nearby stations in ${a.countries.join(", ")}. A free app by ${DEVELOPER}.`,
+    accent: a.color,
+    body: (up) => `  <main class="game-page">
+    <section class="game-hero">
+      <img class="logo big" src="${up}assets/logos/${a.slug}.png" width="140" height="140" alt="${esc(a.name)} logo">
+      <div>
+        <h1>${esc(a.title)}</h1>
+        <p class="tagline">${esc(a.tagline)}</p>
+        <div class="card-actions">${appStoreButtons(a)}</div>
+      </div>
+    </section>
+    <section class="prose">
+${a.about.map((p) => `      <p>${esc(p)}</p>`).join("\n")}
+      ${countryChips(a)}
+      <ul class="features">
+${a.features.map((f) => `        <li>${esc(f)}</li>`).join("\n")}
+      </ul>
+    </section>
+    ${appShots(a, up)}
+    <section class="prose">
+      <h2>Where the prices come from</h2>
+      <p>Every price in ${esc(a.name)} comes from an official open-data source, published under each country's price-reporting rules:</p>
+      <ul>
+${a.sources.map(([country, label, url]) => `        <li><strong>${esc(country)}:</strong> <a href="${url}">${esc(label)}</a></li>`).join("\n")}
+      </ul>
+      <p class="notice">${esc(a.name)} is an independent app. It is not affiliated with, endorsed by, or operated by any government entity, ministry or public authority.</p>
+    </section>
+    <p class="center"><a class="text-link" href="privacy/">Privacy policy for ${esc(a.title)}</a></p>
+  </main>`,
+  });
+}
+
+// ---------- TankCompass privacy policy (six languages, synced from the app repository) ----------
+{
+  const a = APPS.find((x) => x.slug === "tankcompass");
+  const source = readFileSync(join(ROOT, "content", "tankcompass-privacy.html"), "utf8").replace(/\r\n/g, "\n");
+  const updated = source.match(/last-updated: (.+?) -->/)[1];
+  const articles = source
+    .slice(source.indexOf("<article"))
+    .trim()
+    .replace(/<article data-lang="(?!en")/g, '<article hidden data-lang="')
+    .replace(/^(?=.)/gm, "    ");
+  const languages = [["en", "English"], ["tr", "Türkçe"], ["es", "Español"], ["it", "Italiano"], ["da", "Dansk"], ["fr", "Français"]];
+  page({
+    path: `${a.slug}/privacy`,
+    title: `Privacy Policy · ${a.title}`,
+    description: `Privacy policy for the mobile app ${a.title} by ${DEVELOPER}, in English, Turkish, Spanish, Italian, Danish and French.`,
+    accent: a.color,
+    body: (up) => `  <main class="prose policy">
+    <p class="crumb"><a href="${up}${a.slug}/">← ${esc(a.title)}</a></p>
+    <h1>Privacy Policy</h1>
+    <p class="muted">${esc(a.title)} · Last updated: ${esc(updated)}</p>
+    <div class="langbar" role="group" aria-label="Language">
+${languages.map(([code, label]) => `      <button type="button" data-lang="${code}" lang="${code}" aria-pressed="${code === "en"}">${label}</button>`).join("\n")}
+    </div>
+    <noscript><style>.langbar { display: none; } .policy article[hidden] { display: block; margin-top: 56px; }</style></noscript>
+
+${articles}
+  </main>
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll(".langbar button");
+      var articles = document.querySelectorAll(".policy article[data-lang]");
+      var known = Array.prototype.map.call(buttons, function (b) { return b.dataset.lang; });
+      function show(lang) {
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+        articles.forEach(function (el) { el.hidden = el.dataset.lang !== lang; });
+        document.documentElement.lang = lang;
+      }
+      var wanted = new URLSearchParams(location.search).get("lang") || (navigator.language || "en").slice(0, 2).toLowerCase();
+      if (known.indexOf(wanted) !== -1) show(wanted);
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          show(b.dataset.lang);
+          history.replaceState(null, "", "?lang=" + b.dataset.lang);
+        });
+      });
+    })();
+  </script>`,
+  });
+}
+
+console.log(`Built: home, ${APPS.length} app page, ${GAMES.length} game pages, ${APPS.length + GAMES.length} privacy policies.`);
