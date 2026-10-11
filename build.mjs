@@ -131,8 +131,9 @@ const GAMES = [
       "Every clear earns bricks. Spend them on the pier, the fisherman's hut, the tea garden: island by island, a seaside town grows on your map, with a lighthouse at the very end. Play Classic to chase your best score, or Adventure for 100 levels with goals: break stones, melt ice, collect gems.",
     ],
     features: ["Classic mode and 100 Adventure levels", "Five islands and 40 buildings, each in three looks", "No lives and no waiting", "Color-blind mode: every color has its own symbol", "English and Turkish"],
-    // This game also measures anonymous usage and crashes, so its policy has a Firebase section.
-    analytics: true,
+    // The game ships without Firebase, like the other games. If analytics and crash reports are added
+    // later, set this to true: the policy then gains a Firebase section. Update the store's data-safety form too.
+    analytics: false,
     effective: "October 11, 2026",
     saved: "your progress (best score, completed levels and their stars, the buildings of your town, your gold and bricks) and your settings (sound, music, vibration, color-blind mode, language)",
   },

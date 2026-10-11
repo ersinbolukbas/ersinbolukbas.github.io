@@ -14,7 +14,7 @@ Games:
 - Arrow Escape: Tap Unblock
 - Water Sort: Color Tube Puzzle
 - Nut Sort: Bolt Color Puzzle
-- Block Harbor: Puzzle Town (its privacy policy also covers Firebase analytics and crash reports)
+- Block Harbor: Puzzle Town
 
 The pages are generated: edit `build.mjs` (texts, app and game lists) and run `node build.mjs`.
 When a game goes live on Google Play, set its `live` flag to `true` in `build.mjs` and rebuild.
