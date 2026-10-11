@@ -117,6 +117,25 @@ const GAMES = [
     ],
     features: ["Real 3D nuts and bolts", "Undo, hints and an extra bolt", "More colors and taller bolts as you progress", "Timed levels for an extra challenge"],
   },
+  {
+    slug: "block-harbor",
+    art: "blok",
+    name: "Block Harbor",
+    title: "Block Harbor: Puzzle Town",
+    appId: "com.ebsoftware.blockharbor",
+    color: "#137F6B",
+    live: false,
+    tagline: "Place blocks, build your seaside town.",
+    about: [
+      "A calm block puzzle with a town of your own at the end of it. Drag pieces onto the 8x8 board and fill rows and columns to clear them. Fill a line with a single color and it pays double.",
+      "Every clear earns bricks. Spend them on the pier, the fisherman's hut, the tea garden: island by island, a seaside town grows on your map, with a lighthouse at the very end. Play Classic to chase your best score, or Adventure for 100 levels with goals: break stones, melt ice, collect gems.",
+    ],
+    features: ["Classic mode and 100 Adventure levels", "Five islands and 40 buildings, each in three looks", "No lives and no waiting", "Color-blind mode: every color has its own symbol", "English and Turkish"],
+    // This game also measures anonymous usage and crashes, so its policy has a Firebase section.
+    analytics: true,
+    effective: "October 11, 2026",
+    saved: "your progress (best score, completed levels and their stars, the buildings of your town, your gold and bricks) and your settings (sound, music, vibration, color-blind mode, language)",
+  },
 ];
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -262,7 +281,7 @@ ${[...g.features, "Calm background music, with separate switches for sound, musi
     body: (up) => `  <main class="prose policy">
     <p class="crumb"><a href="${up}${g.slug}/">← ${esc(g.title)}</a></p>
     <h1>Privacy Policy</h1>
-    <p class="muted">${esc(g.title)} · Effective date: ${EFFECTIVE}</p>
+    <p class="muted">${esc(g.title)} · Effective date: ${g.effective || EFFECTIVE}</p>
 
     <p>This privacy policy applies to the mobile game <strong>${esc(g.title)}</strong> (the "Game", package name <code>${g.appId}</code>), developed and published by <strong>${esc(DEVELOPER)}</strong> (${esc(OWNER)}), referred to below as "we".</p>
 
@@ -271,11 +290,13 @@ ${[...g.features, "Calm background music, with separate switches for sound, musi
       <li>The Game has no accounts, no sign-in and no online profile.</li>
       <li>We do not collect, store or receive any personal data on our own servers. We do not operate any servers for the Game.</li>
       <li>Your game progress and settings are stored only on your device.</li>
-      <li>The Game shows ads through Google AdMob. Google collects certain data to deliver and measure those ads, as described below.</li>
+      <li>The Game shows ads through Google AdMob. Google collects certain data to deliver and measure those ads, as described below.</li>${
+        g.analytics ? `
+      <li>The Game uses Google Firebase to count anonymous gameplay events and to report crashes, as described below.</li>` : ""}
     </ul>
 
     <h2>Data stored on your device</h2>
-    <p>The Game saves your progress (levels, stars, the level you were playing) and your settings (sound, music, vibration, hints) in local storage on your device. This data never leaves your device and we cannot access it. It is deleted when you clear the Game's data or uninstall the Game.</p>
+    <p>The Game saves ${g.saved || "your progress (levels, stars, the level you were playing) and your settings (sound, music, vibration, hints)"} in local storage on your device. This data never leaves your device and we cannot access it. It is deleted when you clear the Game's data or uninstall the Game.</p>
 
     <h2>Advertising (Google AdMob)</h2>
     <p>The Game is free and supported by ads provided by Google AdMob, a service of Google LLC / Google Ireland Limited. To show ads, measure them and prevent fraud, the Google Mobile Ads SDK included in the Game may automatically collect and process:</p>
@@ -293,7 +314,21 @@ ${[...g.features, "Calm background music, with separate switches for sound, musi
     </ul>
     <p>Rewarded ads are shown only when you ask for them (for example, to get an extra hint). Other ads may appear between levels.</p>
 
-    <h2>Your choices</h2>
+${g.analytics ? `    <h2>Analytics and crash reports (Google Firebase)</h2>
+    <p>To understand how the Game is played and to fix errors, the Game uses Firebase Analytics, Firebase Crashlytics and Firebase Remote Config, services of Google LLC / Google Ireland Limited. They may automatically collect and process:</p>
+    <ul>
+      <li>gameplay events that do not identify you, such as a level being started, completed or failed, a booster being used, a building being built, or an ad being shown;</li>
+      <li>an app-instance identifier created by Firebase for this installation of the Game;</li>
+      <li>device and app information, such as device model, operating system version, language, country or region derived from your IP address, and app version;</li>
+      <li>crash reports: what the Game was doing when an error occurred, and the state of the device at that moment.</li>
+    </ul>
+    <p>We see this information only as statistics and crash reports in the Firebase console. We do not combine it with your name, e-mail address or any other detail that identifies you, because the Game never asks for any. Firebase Remote Config lets us adjust game settings (for example how often ads appear) without an update; it sends the same kind of device and app information to fetch those settings. You can learn more here:</p>
+    <ul>
+      <li><a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a></li>
+      <li><a href="https://support.google.com/firebase/answer/6318039">Data collected by Google Analytics for Firebase</a></li>
+    </ul>
+
+` : ""}    <h2>Your choices</h2>
     <ul>
       <li><strong>Consent (EEA, UK and Switzerland):</strong> when you first open the Game in these regions, a consent message from Google lets you choose whether to allow personalized ads. You can change your choice at any time under Settings → Ad privacy settings in the Game.</li>
       <li><strong>Advertising ID:</strong> on Android you can reset or delete your advertising ID under Settings → Privacy → Ads. On iOS you can turn off tracking under Settings → Privacy &amp; Security → Tracking.</li>
@@ -305,10 +340,10 @@ ${[...g.features, "Calm background music, with separate switches for sound, musi
     <p>The Game is intended for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information through the Game, please contact us.</p>
 
     <h2>Data sharing and retention</h2>
-    <p>We do not sell personal data, and we do not share personal data with anyone, because we do not collect any. Data processed by Google for advertising is retained according to Google's own policies, linked above.</p>
+    <p>We do not sell personal data, and we do not share personal data with anyone, because we do not collect any. Data processed by Google for advertising${g.analytics ? ", analytics and crash reporting" : ""} is retained according to Google's own policies, linked above.</p>
 
     <h2>Security</h2>
-    <p>The Game does not transmit your progress or settings over the internet. Network connections are made only by the Google Mobile Ads SDK, over encrypted connections.</p>
+    <p>The Game does not transmit your progress or settings over the internet. Network connections are made only by the Google Mobile Ads SDK${g.analytics ? " and the Firebase SDKs" : ""}, over encrypted connections.</p>
 
     <h2>Changes to this policy</h2>
     <p>We may update this policy, for example when the Game gains new features. The current version is always available on this page, with its effective date at the top.</p>

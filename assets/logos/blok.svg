@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs>
+<linearGradient id="blokSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B7E0E8"></stop><stop offset="1" stop-color="#F7EFDD"></stop></linearGradient>
+<radialGradient id="blokSun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FBE6A2" stop-opacity=".95"></stop><stop offset="1" stop-color="#FBE6A2" stop-opacity="0"></stop></radialGradient>
+</defs>
+<rect width="256" height="256" fill="url(#blokSky)"></rect>
+<circle cx="200" cy="58" r="60" fill="url(#blokSun)"></circle>
+<path d="M0 186C28 180 52 184 82 189S142 194 172 187 226 180 256 186V256H0Z" fill="#A6DDD8"></path>
+<ellipse cx="128" cy="205" rx="90" ry="18" fill="#DDCBA6"></ellipse>
+<ellipse cx="128" cy="201" rx="90" ry="18" fill="#F1E3C6"></ellipse>
+<rect x="66.500" y="82.500" width="59" height="59" rx="12" fill="#C96A22"></rect>
+<rect x="66.500" y="77" width="59" height="59" rx="12" fill="#EE8A3C"></rect>
+<rect x="130.500" y="82.500" width="59" height="59" rx="12" fill="#C9952A"></rect>
+<rect x="130.500" y="77" width="59" height="59" rx="12" fill="#F2C14E"></rect>
+<rect x="66.500" y="146.500" width="59" height="59" rx="12" fill="#1B8A76"></rect>
+<rect x="66.500" y="141" width="59" height="59" rx="12" fill="#2BB39A"></rect>
+<rect x="130.500" y="146.500" width="59" height="59" rx="12" fill="#2B5C9C"></rect>
+<rect x="130.500" y="141" width="59" height="59" rx="12" fill="#3E7CC9"></rect>
+<g fill="#FFFFFF" fill-opacity=".27">
+<rect x="70" y="80" width="52" height="11" rx="5.500"></rect>
+<rect x="134" y="80" width="52" height="11" rx="5.500"></rect>
+<rect x="70" y="144" width="52" height="11" rx="5.500"></rect>
+<rect x="134" y="144" width="52" height="11" rx="5.500"></rect>
+</g>
+<path d="M51 82 128 24 205 82Z" fill="#B83C58" stroke="#B83C58" stroke-width="9" stroke-linejoin="round" transform="translate(0 3.500)"></path>
+<path d="M51 82 128 24 205 82Z" fill="#E05570" stroke="#E05570" stroke-width="9" stroke-linejoin="round"></path>
+<path d="M0 213C30 208 58 217 90 214S150 205 182 210 228 218 256 213V256H0Z" fill="#7CCBC8"></path>
+<path d="M0 230C26 226 56 233 88 230S148 224 180 228 230 233 256 229V256H0Z" fill="#55B8BC"></path>
+</svg>
