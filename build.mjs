@@ -2,7 +2,7 @@
 // Usage: node build.mjs
 // The TankCompass privacy text lives in content/tankcompass-privacy.html (see sync-tankcompass-privacy.mjs).
 // After a game is published on Google Play, set its `live` to true and run this again:
-// the "Coming soon" badge becomes a "Get it on Google Play" link.
+// the "Coming soon" badge becomes a "Download on Google Play" link.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -177,7 +177,7 @@ ${body(up)}
 
 const storeButton = (g) =>
   g.live
-    ? `<a class="store-btn" href="${playUrl(g)}">Get it on Google Play</a>`
+    ? `<a class="store-btn" href="${playUrl(g)}">Download on Google Play</a>`
     : `<span class="store-btn soon">Coming soon to Google Play</span>`;
 
 const shots = (g, up) =>
@@ -186,7 +186,7 @@ const shots = (g, up) =>
     .join("")}</div>`;
 
 const appStoreButtons = (a) =>
-  `<a class="store-btn" href="https://play.google.com/store/apps/details?id=${a.appId}">Get it on Google Play</a>${
+  `<a class="store-btn" href="https://play.google.com/store/apps/details?id=${a.appId}">Download on Google Play</a>${
     a.appStoreUrl
       ? `<a class="store-btn" href="${a.appStoreUrl}">Download on the App Store</a>`
       : `<span class="store-btn soon">Coming soon to the App Store</span>`
