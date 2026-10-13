@@ -20,6 +20,7 @@ const APPS = [
     name: "TankCompass",
     title: "TankCompass",
     appId: "com.tankcompass.app",
+    appStoreUrl: "https://apps.apple.com/app/tankcompass-fuel-prices/id6814000754",
     color: "#1B4A73",
     tagline: "The cheapest fuel near you.",
     about: [
@@ -185,7 +186,11 @@ const shots = (g, up) =>
     .join("")}</div>`;
 
 const appStoreButtons = (a) =>
-  `<a class="store-btn" href="https://play.google.com/store/apps/details?id=${a.appId}">Get it on Google Play</a><span class="store-btn soon">Coming soon to the App Store</span>`;
+  `<a class="store-btn" href="https://play.google.com/store/apps/details?id=${a.appId}">Get it on Google Play</a>${
+    a.appStoreUrl
+      ? `<a class="store-btn" href="${a.appStoreUrl}">Download on the App Store</a>`
+      : `<span class="store-btn soon">Coming soon to the App Store</span>`
+  }`;
 
 const countryChips = (a) => `<ul class="chips" aria-label="Countries covered">${a.countries.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>`;
 
