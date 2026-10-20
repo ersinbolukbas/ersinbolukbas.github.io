@@ -247,7 +247,8 @@ ${GAMES.map(
         </a>
         <p>${esc(g.about[0])}</p>
         ${shots(g, up)}
-        <div class="card-actions">${storeButton(g)}<a class="text-link" href="${g.slug}/">More about the game</a><a class="text-link" href="${g.slug}/privacy/">Privacy policy</a></div>
+        <div class="card-actions">${storeButton(g)}</div>
+        <div class="card-actions"><a class="text-link" href="${g.slug}/">More about the game</a><a class="text-link" href="${g.slug}/privacy/">Privacy policy</a></div>
       </article>`,
 ).join("\n")}
     </section>

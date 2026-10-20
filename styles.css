@@ -109,7 +109,7 @@ main, .site-header, .site-footer { width: min(1040px, 100% - 32px); margin-inlin
 .apps { display: grid; gap: 22px; padding: 12px 0 20px; }
 .app-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 30px; align-items: center; background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 26px; box-shadow: 0 6px 0 var(--line); }
 .app-info > p { margin: 14px 0; }
-.app-info .card-actions + .card-actions { margin-top: 14px; }
+.card-actions + .card-actions { margin-top: 14px; }
 .app-shots { grid-template-columns: repeat(3, 1fr); margin: 0; }
 .game-page .app-shots { max-width: 100%; margin: 28px 0; }
 .game-hero .card-actions { margin-top: 2px; }
