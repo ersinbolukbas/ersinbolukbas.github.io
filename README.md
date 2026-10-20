@@ -18,6 +18,7 @@ Games:
 
 The pages are generated: edit `build.mjs` (texts, app and game lists) and run `node build.mjs`.
 When a game goes live on Google Play, set its `live` flag to `true` in `build.mjs` and rebuild.
+When a game goes live on the App Store, give it an `appStoreUrl` in `build.mjs` and rebuild.
 
 ## Updating the TankCompass privacy policy
 

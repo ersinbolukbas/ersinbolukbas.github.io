@@ -3,6 +3,7 @@
 // The TankCompass privacy text lives in content/tankcompass-privacy.html (see sync-tankcompass-privacy.mjs).
 // After a game is published on Google Play, set its `live` to true and run this again:
 // the "Coming soon" badge becomes a "Download on Google Play" link.
+// A game on the App Store also gets an `appStoreUrl`, which adds a "Download on the App Store" link.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -64,6 +65,7 @@ const GAMES = [
     name: "Dots and Boxes",
     title: "Dots and Boxes: Square Clash",
     appId: "com.ebsoftware.dotsandboxes",
+    appStoreUrl: "https://apps.apple.com/app/dots-and-boxes-square-clash/id6820639833",
     color: "#F76C5E",
     live: false,
     tagline: "Connect the dots, claim the boxes.",
@@ -176,9 +178,10 @@ ${body(up)}
 }
 
 const storeButton = (g) =>
-  g.live
+  (g.live
     ? `<a class="store-btn" href="${playUrl(g)}">Download on Google Play</a>`
-    : `<span class="store-btn soon">Coming soon to Google Play</span>`;
+    : `<span class="store-btn soon">Coming soon to Google Play</span>`) +
+  (g.appStoreUrl ? `<a class="store-btn" href="${g.appStoreUrl}">Download on the App Store</a>` : "");
 
 const shots = (g, up) =>
   `<div class="shots">${["game", "map"]
@@ -264,7 +267,7 @@ for (const g of GAMES) {
       <div>
         <h1>${esc(g.title)}</h1>
         <p class="tagline">${esc(g.tagline)}</p>
-        ${storeButton(g)}
+        <div class="card-actions">${storeButton(g)}</div>
       </div>
     </section>
     <section class="prose">
