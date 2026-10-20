@@ -20,7 +20,7 @@ const APPS = [
     name: "TankCompass",
     title: "TankCompass",
     appId: "com.tankcompass.app",
-    appStoreUrl: "https://apps.apple.com/app/tankcompass-fuel-prices/id6814000754",
+    appStoreUrl: "https://apps.apple.com/nl/app/tankcompass-fuel-prices/id6814000754",
     color: "#1B4A73",
     tagline: "The cheapest fuel near you.",
     about: [
