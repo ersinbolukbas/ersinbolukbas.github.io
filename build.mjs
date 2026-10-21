@@ -131,9 +131,7 @@ const GAMES = [
       "Classic mode with endless boards",
       "English and Turkish",
     ],
-    // Its screenshots are taller than the other games' (1080 x 2340).
     shots: [["game", "An arrow puzzle before the castle"], ["map", "A finished castle"]],
-    shotSize: [1080, 2340],
     // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
     usStates: true,
     // The game's settings button for Google's privacy options.
