@@ -74,6 +74,9 @@ const GAMES = [
       "Play against the computer through levels that grow from tiny boards to big ones and from easy to expert, or pass the phone and challenge a friend. Choose the classic turn mode, or dice mode, where a bouncing 3D die decides how many lines you draw.",
     ],
     features: ["Turn mode and dice mode", "Play the computer or a friend on one phone", "Step-by-step tutorial levels", "Endless levels with star gates"],
+    // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
+    usStates: true,
+    effective: "October 21, 2026",
   },
   {
     slug: "arrow-escape",
@@ -89,6 +92,9 @@ const GAMES = [
       "Boards come in hearts, diamonds, rings and more, packed edge to edge with colorful 3D arrows. The further you go, the more arrows there are, and every third level is extra hard.",
     ],
     features: ["Colorful 3D arrows", "Three lives per level", "Boards in many shapes", "An extra-hard level every third stage"],
+    // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
+    usStates: true,
+    effective: "October 21, 2026",
   },
   {
     slug: "block-harbor",
@@ -107,8 +113,10 @@ const GAMES = [
     // The game ships without Firebase, like the other games. If analytics and crash reports are added
     // later, set this to true: the policy then gains a Firebase section. Update the store's data-safety form too.
     analytics: false,
-    effective: "October 11, 2026",
     saved: "your progress (best score, completed levels and their stars, the buildings of your town, your gold and bricks) and your settings (sound, music, vibration, color-blind mode, language)",
+    // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
+    usStates: true,
+    effective: "October 21, 2026",
   },
   {
     slug: "arrowkeep",
@@ -153,6 +161,9 @@ const GAMES = [
       "It starts with two colors and grows to twelve. Stuck? Undo a move, ask for a hint, or add an extra tube.",
     ],
     features: ["Smooth pouring animations", "Undo, hints and an extra tube", "From 2 colors up to 12", "Timed levels for an extra challenge"],
+    // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
+    usStates: true,
+    effective: "October 21, 2026",
   },
   {
     slug: "nut-sort",
@@ -168,6 +179,9 @@ const GAMES = [
       "Glossy 3D nuts spin down the threads as you sort. Levels add more colors and taller bolts as you go.",
     ],
     features: ["Real 3D nuts and bolts", "Undo, hints and an extra bolt", "More colors and taller bolts as you progress", "Timed levels for an extra challenge"],
+    // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
+    usStates: true,
+    effective: "October 21, 2026",
   },
 ];
 
