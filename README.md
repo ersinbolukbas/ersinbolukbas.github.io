@@ -15,6 +15,7 @@ Games:
 - Water Sort: Color Tube Puzzle
 - Nut Sort: Bolt Color Puzzle
 - Block Harbor: Puzzle Town
+- Arrowkeep: Archery & Puzzles
 
 The pages are generated: edit `build.mjs` (texts, app and game lists) and run `node build.mjs`.
 When a game goes live on Google Play, set its `live` flag to `true` in `build.mjs` and rebuild.

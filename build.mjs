@@ -91,6 +91,57 @@ const GAMES = [
     features: ["Colorful 3D arrows", "Three lives per level", "Boards in many shapes", "An extra-hard level every third stage"],
   },
   {
+    slug: "block-harbor",
+    art: "blok",
+    name: "Block Harbor",
+    title: "Block Harbor: Puzzle Town",
+    appId: "com.ebsoftware.blockharbor",
+    color: "#137F6B",
+    live: false,
+    tagline: "Place blocks, build your seaside town.",
+    about: [
+      "A calm block puzzle with a town of your own at the end of it. Drag pieces onto the 8x8 board and fill rows and columns to clear them. Fill a line with a single color and it pays double.",
+      "Every clear earns bricks. Spend them on the pier, the fisherman's hut, the tea garden: island by island, a seaside town grows on your map, with a lighthouse at the very end. Play Classic to chase your best score, or Adventure for 100 levels with goals: break stones, melt ice, collect gems.",
+    ],
+    features: ["Classic mode and 100 Adventure levels", "Five islands and 40 buildings, each in three looks", "No lives and no waiting", "Color-blind mode: every color has its own symbol", "English and Turkish"],
+    // The game ships without Firebase, like the other games. If analytics and crash reports are added
+    // later, set this to true: the policy then gains a Firebase section. Update the store's data-safety form too.
+    analytics: false,
+    effective: "October 11, 2026",
+    saved: "your progress (best score, completed levels and their stars, the buildings of your town, your gold and bricks) and your settings (sound, music, vibration, color-blind mode, language)",
+  },
+  {
+    slug: "arrowkeep",
+    art: "arrowkeep",
+    name: "Arrowkeep",
+    title: "Arrowkeep: Archery & Puzzles",
+    appId: "com.ebsoftware.arrowkeep",
+    color: "#8A5A2E",
+    live: false,
+    tagline: "Free the arrows, hit the mark, build your keep.",
+    about: [
+      "Every arrow slides the way its head points. Tap them out in the right order to clear the board; send one into another and it crashes, costing a heart. Locked arrows wait for their keys, and portals send arrows across the board.",
+      "Every fifth level brings an archery round on the meadow before your castle: set the height, set the power and loose at a straw target. What you earn builds a medieval keep, stone by stone, and then the journey goes on: a forest camp, a river town, a mountain pass, a harbor, a northern fort and a royal city.",
+    ],
+    features: [
+      "Arrow puzzles with locks and portals",
+      "Archery rounds, and an Archery Range for practice at straw targets",
+      "Eight settlements to build, from a stone castle to a royal city",
+      "An adventure map and a level path with gates",
+      "Classic mode with endless boards",
+      "English and Turkish",
+    ],
+    // Its screenshots are taller than the other games' (1080 x 2340).
+    shots: [["game", "An arrow puzzle before the castle"], ["map", "A finished castle"]],
+    shotSize: [1080, 2340],
+    // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
+    usStates: true,
+    // The game's settings button for Google's privacy options.
+    privacyLabel: "Privacy options",
+    effective: "October 21, 2026",
+    saved: "your progress (levels and their stars, the settlements you have built, your gold, building materials and archery points, your archery upgrades and best score) and your settings (sound, music, vibration, language)",
+  },
+  {
     slug: "water-sort",
     art: "su",
     name: "Water Sort",
@@ -119,26 +170,6 @@ const GAMES = [
       "Glossy 3D nuts spin down the threads as you sort. Levels add more colors and taller bolts as you go.",
     ],
     features: ["Real 3D nuts and bolts", "Undo, hints and an extra bolt", "More colors and taller bolts as you progress", "Timed levels for an extra challenge"],
-  },
-  {
-    slug: "block-harbor",
-    art: "blok",
-    name: "Block Harbor",
-    title: "Block Harbor: Puzzle Town",
-    appId: "com.ebsoftware.blockharbor",
-    color: "#137F6B",
-    live: false,
-    tagline: "Place blocks, build your seaside town.",
-    about: [
-      "A calm block puzzle with a town of your own at the end of it. Drag pieces onto the 8x8 board and fill rows and columns to clear them. Fill a line with a single color and it pays double.",
-      "Every clear earns bricks. Spend them on the pier, the fisherman's hut, the tea garden: island by island, a seaside town grows on your map, with a lighthouse at the very end. Play Classic to chase your best score, or Adventure for 100 levels with goals: break stones, melt ice, collect gems.",
-    ],
-    features: ["Classic mode and 100 Adventure levels", "Five islands and 40 buildings, each in three looks", "No lives and no waiting", "Color-blind mode: every color has its own symbol", "English and Turkish"],
-    // The game ships without Firebase, like the other games. If analytics and crash reports are added
-    // later, set this to true: the policy then gains a Firebase section. Update the store's data-safety form too.
-    analytics: false,
-    effective: "October 11, 2026",
-    saved: "your progress (best score, completed levels and their stars, the buildings of your town, your gold and bricks) and your settings (sound, music, vibration, color-blind mode, language)",
   },
 ];
 
@@ -183,10 +214,13 @@ const storeButton = (g) =>
     : `<span class="store-btn soon">Coming soon to Google Play</span>`) +
   (g.appStoreUrl ? `<a class="store-btn" href="${g.appStoreUrl}">Download on the App Store</a>` : "");
 
-const shots = (g, up) =>
-  `<div class="shots">${["game", "map"]
-    .map((s) => `<img class="shot" src="${up}assets/screenshots/${g.art}-${s}.png" width="1080" height="1920" loading="lazy" alt="${esc(g.name)} screenshot">`)
+const shots = (g, up) => {
+  const [w, h] = g.shotSize || [1080, 1920];
+  const list = g.shots || [["game", "screenshot"], ["map", "screenshot"]];
+  return `<div class="shots">${list
+    .map(([s, alt]) => `<img class="shot" src="${up}assets/screenshots/${g.art}-${s}.png" width="${w}" height="${h}" loading="lazy" alt="${esc(g.name)} ${esc(alt)}">`)
     .join("")}</div>`;
+};
 
 const appStoreButtons = (a) =>
   `<a class="store-btn" href="https://play.google.com/store/apps/details?id=${a.appId}">Download on Google Play</a>${
@@ -340,7 +374,9 @@ ${g.analytics ? `    <h2>Analytics and crash reports (Google Firebase)</h2>
 
 ` : ""}    <h2>Your choices</h2>
     <ul>
-      <li><strong>Consent (EEA, UK and Switzerland):</strong> when you first open the Game in these regions, a consent message from Google lets you choose whether to allow personalized ads. You can change your choice at any time under Settings → Ad privacy settings in the Game.</li>
+      <li><strong>Consent (EEA, UK and Switzerland):</strong> when you first open the Game in these regions, a consent message from Google lets you choose whether to allow personalized ads. You can change your choice at any time under Settings → ${g.privacyLabel || "Ad privacy settings"} in the Game.</li>${
+        g.usStates ? `
+      <li><strong>United States:</strong> in US states with consumer privacy laws (such as California), a message from Google lets you opt out of the sale or sharing of your personal information for personalized ads. You can change this at any time under Settings → ${g.privacyLabel || "Ad privacy settings"} in the Game.</li>` : ""}
       <li><strong>Advertising ID:</strong> on Android you can reset or delete your advertising ID under Settings → Privacy → Ads. On iOS you can turn off tracking under Settings → Privacy &amp; Security → Tracking.</li>
       <li><strong>Personalized ads:</strong> you can manage ad personalization for your Google account at <a href="https://adssettings.google.com">adssettings.google.com</a>.</li>
       <li><strong>Local data:</strong> you can delete your progress and settings by clearing the Game's data or uninstalling the Game.</li>
