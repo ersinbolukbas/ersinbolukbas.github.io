@@ -72,11 +72,14 @@ const GAMES = [
     about: [
       "The pen-and-paper classic, rebuilt for your phone. Draw a line between two dots; close a box and it is yours. Whoever owns the most boxes wins.",
       "Play against the computer through levels that grow from tiny boards to big ones and from easy to expert, or pass the phone and challenge a friend. Choose the classic turn mode, or dice mode, where a bouncing 3D die decides how many lines you draw.",
+      "Or play a friend on two phones: on the same Wi-Fi, one phone creates a room and the other joins it. No internet connection and no account needed. Each player rolls the die on their own phone (Android).",
     ],
-    features: ["Turn mode and dice mode", "Play the computer or a friend on one phone", "Step-by-step tutorial levels", "Endless levels with star gates"],
+    features: ["Turn mode and dice mode", "Play a friend on two phones over Wi-Fi (Android)", "Play the computer or a friend on one phone", "Endless levels with star gates"],
     // A consent message for US state privacy laws, besides the EEA, UK and Switzerland.
     usStates: true,
-    effective: "October 21, 2026",
+    // "Friend on Wi-Fi": two phones connect directly over the local network (privacy policy section).
+    localPlay: true,
+    effective: "October 25, 2026",
   },
   {
     slug: "arrow-escape",
@@ -347,6 +350,8 @@ ${[...g.features, "Calm background music, with separate switches for sound, musi
       <li>We do not collect, store or receive any personal data on our own servers. We do not operate any servers for the Game.</li>
       <li>Your game progress and settings are stored only on your device.</li>
       <li>The Game shows ads through Google AdMob. Google collects certain data to deliver and measure those ads, as described below.</li>${
+        g.localPlay ? `
+      <li>When you play a friend on Wi-Fi, the two phones connect directly over your local network. Your moves go only to your friend's phone, never to us or anyone else.</li>` : ""}${
         g.analytics ? `
       <li>The Game uses Google Firebase to count anonymous gameplay events and to report crashes, as described below.</li>` : ""}
     </ul>
@@ -384,6 +389,14 @@ ${g.analytics ? `    <h2>Analytics and crash reports (Google Firebase)</h2>
       <li><a href="https://support.google.com/firebase/answer/6318039">Data collected by Google Analytics for Firebase</a></li>
     </ul>
 
+` : ""}${g.localPlay ? `    <h2>Playing a friend on Wi-Fi</h2>
+    <p>With "Friend on Wi-Fi" (currently on Android), two phones on the same Wi-Fi network play one game together. This works only inside your local network; nothing goes through the internet or through any server of ours.</p>
+    <ul>
+      <li><strong>Finding each other:</strong> while you have a room open, your phone announces it on the local network so your friend's phone can find it. The room name shows your phone's model name, the game mode and the board size (for example "Pixel 7 · Dice · 8 × 6"), and can be seen by other devices on the same network until the game starts. Your friend can also join with a code, which is your phone's address on the local network.</li>
+      <li><strong>During the game:</strong> the two phones send each other only what the game needs: the lines drawn, the dice rolls, and short messages to check that the connection is still there. Nothing about the game is saved on our side or sent anywhere else.</li>
+      <li><strong>Permissions:</strong> on Android the Game uses the Wi-Fi state and multicast permissions to find rooms on the local network. They do not give access to your location, contacts or files.</li>
+    </ul>
+
 ` : ""}    <h2>Your choices</h2>
     <ul>
       <li><strong>Consent (EEA, UK and Switzerland):</strong> when you first open the Game in these regions, a consent message from Google lets you choose whether to allow personalized ads. You can change your choice at any time under Settings → ${g.privacyLabel || "Ad privacy settings"} in the Game.</li>${
@@ -401,7 +414,7 @@ ${g.analytics ? `    <h2>Analytics and crash reports (Google Firebase)</h2>
     <p>We do not sell personal data, and we do not share personal data with anyone, because we do not collect any. Data processed by Google for advertising${g.analytics ? ", analytics and crash reporting" : ""} is retained according to Google's own policies, linked above.</p>
 
     <h2>Security</h2>
-    <p>The Game does not transmit your progress or settings over the internet. Network connections are made only by the Google Mobile Ads SDK${g.analytics ? " and the Firebase SDKs" : ""}, over encrypted connections.</p>
+    <p>The Game does not transmit your progress or settings over the internet. Network connections are made only by the Google Mobile Ads SDK${g.analytics ? " and the Firebase SDKs" : ""}, over encrypted connections.${g.localPlay ? " When you play a friend on Wi-Fi, the two phones also connect directly to each other inside your local network; this connection carries only game moves and is not encrypted, so play on a Wi-Fi network you trust." : ""}</p>
 
     <h2>Changes to this policy</h2>
     <p>We may update this policy, for example when the Game gains new features. The current version is always available on this page, with its effective date at the top.</p>
